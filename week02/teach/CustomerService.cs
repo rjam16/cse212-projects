@@ -13,6 +13,7 @@ public class CustomerService {
         // Test 1
         // Scenario: 
         // Expected Result: 
+        
         Console.WriteLine("Test 1");
 
         // Defect(s) Found: 
@@ -30,7 +31,7 @@ public class CustomerService {
 
         // Add more Test Cases As Needed Below
     }
-
+    int maxSize = _maxSize
     private readonly List<Customer> _queue = new();
     private readonly int _maxSize;
 
