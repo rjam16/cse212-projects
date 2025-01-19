@@ -8,7 +8,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: check if exception is thrown if the queue is empty
     // Expected Result: "The queue is empty."
-    // Defect(s) Found: 
+    // Defect(s) Found: No error so far, passed test
     public void TestPriorityQueue_1()
     {
         var priorityQueue = new PriorityQueue();
@@ -30,13 +30,23 @@ public class PriorityQueueTests
 
     [TestMethod]
     // Scenario: check if when presented two items with the highest priority, it will choose the item closest to the front of the queue
-    // Expected Result: 
-    // Defect(s) Found: I don't know why, but I'm unable to get rid of the semicolon error. I've tried many things, but doesn't work
-    //I tried deleting everything and the error remains
+    // Expected Result: "Check" , "Redo"
+    // Defect(s) Found: loop needed to cover more values, and the items needed to actually be removed from queue
     public void TestPriorityQueue_2()
     {
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+
+        priorityQueue.Enqueue("Guess", 5);
+        priorityQueue.Enqueue("Check", 9);
+        priorityQueue.Enqueue("Correct", 5);
+        priorityQueue.Enqueue("Redo", 9);
+
+        if (priorityQueue.Dequeue() != "Check")
+        {Assert.Fail("Actual first result doesn't match Expected result");}
+        if (priorityQueue.Dequeue() != "Redo")
+        {Assert.Fail("Actual second result doesn't match Expected result");}
+
+        
 
     // Add more test cases as needed below.
     }
