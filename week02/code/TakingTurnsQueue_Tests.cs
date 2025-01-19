@@ -11,8 +11,11 @@ public class TakingTurnsQueueTests
     // Scenario: Create a queue with the following people and turns: Bob (2), Tim (5), Sue (3) and
     // run until the queue is empty
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
-    // Defect(s) Found: 
+    // Defect(s) Found: assert.AreEqual failed Expected:<Bob>. Actual:<Sue> aka the order in the queue is wrong
+    //queue did not have queue attributes: Enqueue & dequeue
     public void TestTakingTurnsQueue_FiniteRepetition()
+    //did not pass
+    //passed after changing length to count and PersonQueue -> Queue<Person>
     {
         var bob = new Person("Bob", 2);
         var tim = new Person("Tim", 5);
@@ -43,8 +46,10 @@ public class TakingTurnsQueueTests
     // Scenario: Create a queue with the following people and turns: Bob (2), Tim (5), Sue (3)
     // After running 5 times, add George with 3 turns.  Run until the queue is empty.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, George, Sue, Tim, George, Tim, George
-    // Defect(s) Found: 
+    // Defect(s) Found: Assert.AreEqual failed. Expectd:<Bob>. Actual:<Sue> aka
     public void TestTakingTurnsQueue_AddPlayerMidway()
+    //did not pass test
+    //passed after changing _people.IsEmpty -> _people.Count == 0
     {
         var bob = new Person("Bob", 2);
         var tim = new Person("Tim", 5);
@@ -85,8 +90,14 @@ public class TakingTurnsQueueTests
     // Scenario: Create a queue with the following people and turns: Bob (2), Tim (Forever), Sue (3)
     // Run 10 times.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
-    // Defect(s) Found: 
+    // Defect(s) Found: assert.AreEqual failed Expected:<Bob>. Actual:<Sue> aka the order in the queue is wrong
+    //assert.AreEqual failed Expected:<Tim>. Actual:<Sue> aka the zero is not considered as infinite
+    //the range for checking on GetNextPerson from > 1 to > 1 and <= 0, only the former subtracting the turns
     public void TestTakingTurnsQueue_ForeverZero()
+    // did not pass test
+    //did not pass after previous 
+    //did not pass after second set of changes
+    //passed after last set of changes
     {
         var timTurns = 0;
 
@@ -116,8 +127,11 @@ public class TakingTurnsQueueTests
     // Scenario: Create a queue with the following people and turns: Tim (Forever), Sue (3)
     // Run 10 times.
     // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
-    // Defect(s) Found: 
+    // Defect(s) Found: assert.AreEqual failed Expected:<Bob>. Actual:<Sue> aka the order in the queue is wrong
     public void TestTakingTurnsQueue_ForeverNegative()
+    //did not pass test
+    //did not pass after first set of changes
+    //passed after second set of changes
     {
         var timTurns = -3;
         var tim = new Person("Tim", timTurns);
@@ -145,6 +159,7 @@ public class TakingTurnsQueueTests
     // Expected Result: Exception should be thrown with appropriate error message.
     // Defect(s) Found: 
     public void TestTakingTurnsQueue_Empty()
+    //passed the test
     {
         var players = new TakingTurnsQueue();
 
