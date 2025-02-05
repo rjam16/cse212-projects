@@ -22,6 +22,9 @@
                     return false;
             }
         }
+        //one loop for O(n)
+        //for each loop go through each letter in string
+        //if no duplicates, return true
 
         return true;
     }

@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Text.Json;
 
 public static class SetsAndMaps
@@ -21,8 +22,24 @@ public static class SetsAndMaps
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     public static string[] FindPairs(string[] words)
     {
+        var found = new HashSet<string>();
+        //var seen = new HashSet<string>();
+        foreach (var word in words) {
+            string reverse = word[1].ToString() + word[0].ToString();
+            //var reverse = new string(word.Reverse().ToArray());
+            //if (!seen.Contains(reverse)) {
+                //found.Add($"{word} & {reverse}");
+            //}
+            //else {seen.Add(word);}
+            if (words.Contains(reverse) && !found.Contains($"{reverse} & {word}") && word[0] != word[1])
+            {
+                found.Add(word + " & " + reverse);
+            }
+        }
+        //string[] foundPairs = found.ToArray();
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        return found.ToArray();
+        
     }
 
     /// <summary>
@@ -38,11 +55,19 @@ public static class SetsAndMaps
     /// <returns>fixed array of divisors</returns>
     public static Dictionary<string, int> SummarizeDegrees(string filename)
     {
+        var earned = 1;
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+            var degree = fields[3];
+            
+            if (degrees.ContainsKey(degree))
+                degrees[degree] += earned;
+            else
+                degrees[degree] = earned;
+
         }
 
         return degrees;
@@ -67,7 +92,27 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        word1 = new string(word1.Where(char.IsLetterOrDigit).ToArray()).ToLower();
+        word2 = new string(word2.Where(char.IsLetterOrDigit).ToArray()).ToLower();
+
+        var countChar1 = new Dictionary<char, int>();
+        var countChar2 = new Dictionary<char, int>();
+
+        foreach (var letter in word1)
+            if (countChar1.ContainsKey(letter))
+                countChar1[letter]++;
+            else
+                countChar1[letter] = 1;
+        foreach (var letter in word2)
+            if (countChar2.ContainsKey(letter))
+                countChar2[letter]++;
+            else
+                countChar2[letter] = 1;
+        //if 
+         return countChar1.Count == countChar2.Count && !countChar1.Except(countChar2).Any();
+           // return true;
+        //else
+            //return false;
     }
 
     /// <summary>

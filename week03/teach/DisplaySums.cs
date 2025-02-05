@@ -29,5 +29,8 @@
     /// <param name="numbers">array of integers</param>
     private static void DisplaySumPairs(int[] numbers) {
         // TODO Problem 2 - This should print pairs of numbers in the given array
+        //x is 1st number in set y is # to look for, use for to find y + x = 10
+        
+
     }
 }

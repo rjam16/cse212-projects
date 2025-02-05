@@ -23,14 +23,22 @@ public class Basketball
         reader.TextFieldType = FieldType.Delimited;
         reader.SetDelimiters(",");
         reader.ReadFields(); // ignore header row
+        //players = new Dictionary<playerId, points>()
         while (!reader.EndOfData) {
             var fields = reader.ReadFields()!;
             var playerId = fields[0];
             var points = int.Parse(fields[8]);
+            //if (!players.ContainsKey(playerId))
+                //play
+            //  players[playerId] = points;
+            //else 
+            //  players[playerId] += points
+            
         }
-
+        
         Console.WriteLine($"Players: {{{string.Join(", ", players)}}}");
 
         var topPlayers = new string[10];
+        //if player in map, check map for # of points += points to existing score
     }
 }
